@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Sayang! ❤️</title>
+    <style>
+        /* Import Font yang lucu dan modern */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap');
+
+        :root {
+            --primary-pink: #ff8fa3;
+            --dark-pink: #ff4d6d;
+            --light-pink: #fff0f3;
+            --text-color: #590d22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffc2d1 0%, #ffe5ec 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Container Kartu */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            z-index: 10;
+            border: 2px solid #fff;
+            animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Foto Pacar */
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--primary-pink);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Dekorasi Hati kecil di foto */
+        .heart-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--dark-pink);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--dark-pink);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            min-height: 3rem; /* Menjaga tinggi agar tidak lompat saat teks berubah */
+        }
+
+        /* Tombol */
+        .btn-semangat {
+            background: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-semangat:hover {
+            transform: scale(1.05);
+            background: #c9184a;
+        }
+
+        .btn-semangat:active {
+            transform: scale(0.95);
+        }
+
+        /* Animasi Background Hearts */
+        .floating-heart {
+            position: absolute;
+            color: var(--primary-pink);
+            opacity: 0;
+            top: 100%;
+            animation: flyUp 5s linear infinite;
+        }
+
+        /* Keyframes Animasi */
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes flyUp {
+            0% { top: 100%; opacity: 0; transform: scale(0.5); }
+            10% { opacity: 0.8; }
+            100% { top: -10%; opacity: 0; transform: scale(1.5) rotate(45deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation Container -->
+    <div id="hearts-container"></div>
+
+    <div class="card">
+        <div class="photo-container">
+            <div class="photo-frame">
+                
+                <img src="foto1.jpeg" alt="Foto Pacar" id="pacar-img">
+            </div>
+            <div class="heart-badge">❤️</div>
+        </div>
+
+        <h1>Semangat Sayang!</h1>
+        <p id="message">Jangan lupa istirahat ya, aku tau kamu pasti bisa ngerjain tugasnya!</p>
+
+        <button class="btn-semangat" onclick="beriSemangat()">Mau Semangat?</button>
+    </div>
+
+    <script>
+        // Daftar kata-kata semangat
+        const messages = [
+            "Kamu hebat banget, aku bangga sama kamu! 💕",
+            "Tugasnya emang berat, tapi kamu lebih kuat! 💪",
+            "Inget ya, abis tugas selesai kita jalan-jalan! 🍦",
+            "Jangan lupa minum air putih ya cantik! 🥤",
+            "Peluk jauh dari aku biar makin semangat! 🤗",
+            "Satu tugas selesai, satu langkah menuju sukses! 🌟",
+            "I love you! Semangat ngerjainnya! ❤️"
+        ];
+
+        function beriSemangat() {
+            // 1. Ganti Teks Secara Acak
+            const messageElement = document.getElementById('message');
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            
+            // Efek fade out sedikit sebelum ganti teks
+            messageElement.style.opacity = 0;
+            setTimeout(() => {
+                messageElement.innerText = messages[randomIndex];
+                messageElement.style.opacity = 1;
+            }, 200);
+
+            // 2. Buat Ledakan Hati (Confetti Heart)
+            createHeartExplosion();
+        }
+
+        function createHeartExplosion() {
+            const container = document.body;
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                heart.style.transform = `translate(-50%, -50%)`;
+                heart.style.transition = 'all 1s ease-out';
+                heart.style.zIndex = '100';
+                heart.style.pointerEvents = 'none'; // Agar tidak mengganggu klik
+                
+                container.appendChild(heart);
+
+                // Arah acak untuk ledakan
+                const x = (Math.random() - 0.5) * window.innerWidth * 0.5;
+                const y = (Math.random() - 0.5) * window.innerHeight * 0.5;
+
+                setTimeout(() => {
+                    heart.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 360}deg)`;
+                    heart.style.opacity = 0;
+                }, 50);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 1000);
+            }
+        }
+
+        // Fungsi untuk membuat hati melayang di background secara terus menerus
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = Math.random() > 0.5 ? '💖' : '🌸'; // Variasi emoji
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's'; // Durasi acak 3-6 detik
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Jalankan background animation setiap 300ms
+        setInterval(createFloatingHearts, 300);
+
+    </script>
+</body>
+</html>
